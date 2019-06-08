@@ -1,2 +1,2 @@
-# NetworkSelector
-Network selector for linux system
+# WifiSelector
+Wifi selector for linux system implemetend with NetworkManager
