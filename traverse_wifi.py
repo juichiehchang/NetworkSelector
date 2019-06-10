@@ -101,7 +101,8 @@ class traverse:
         
         # check authentication suites
         if 'Authentication Suites (1)' in wifi:
-            if wifi['Authentication Suites (1)'] == 'EAP':
+            authentication = wifi['Authentication Suites (1)']
+            if authentication == 'EAP' or '802.1x':
                 # eap requires identity and password
                 if name in self.eap_dict:
                     [identity, password] = self.eap_dict[name]
@@ -116,7 +117,7 @@ class traverse:
                 else:
                     print('Does not have the identity and password for "{}"'.format(name))
                     
-            elif wifi['Authentication Suites (1)'] == 'PSK':
+            elif authentication == 'PSK':
                 # psk requires only password
                 if name in self.psk_dict:
                     password = self.psk_dict[name]
