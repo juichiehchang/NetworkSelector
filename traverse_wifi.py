@@ -71,7 +71,7 @@ class traverse:
 
     def eap_add_con(self, name, identity):
         print('Adding "{}" with identity: "{}" to con'.format(name, identity))
-        os.system('nmcli connection add type wifi con-name "{}" ifname {} ssid "{}" -- wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth mschapv2 802-1x.identity "{}" >/dev/null 2>&1'.format(name, self.iface, name, identity))
+        os.system('nmcli connection add type wifi con-name "{}" ifname {} ssid "{}" -- wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 802-1x.identity "{}" >/dev/null 2>&1'.format(name, self.iface, name, identity))
 
     def eap_add_pw(self, name, password):
         lines = None
