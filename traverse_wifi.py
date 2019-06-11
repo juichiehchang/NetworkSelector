@@ -152,4 +152,5 @@ class traverse:
             
 if __name__ == '__main__':
     t = traverse('wlp3s0')
+    t.get_passwd()
     t.try_all()
