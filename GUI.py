@@ -33,8 +33,14 @@ class StartPage(tk.Frame):
         self.root = root
         #aggregate SSIDs
         wifiList = []
-        for i in wifiDict:
-            wifiList.append(i["ESSID"])
+        for wifi in  wifiDict:
+            if 'Authentication Suites (1)' in wifi:
+                if wifi['Authentication Suites (1)'] == "psk":
+                    wifiList.append("(PSK) "+ wifi["ESSID"])
+                else:
+                    wifiList.append("(802.1x) "+ wifi["ESSID"])
+            else:
+                wifiList.append(wifi["ESSID"])
         self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
@@ -119,8 +125,8 @@ class PageTwo(tk.Frame):#display results
 
 #root = tk.Tk()
 if __name__ == '__main__':
-    t = tra("wlp3s")
-    app = Application(t)
+    t = tra("wlp3s0")
+    app = Application(t.wifi_list)
     app.mainloop()
 
 
