@@ -7,10 +7,10 @@ class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         super().title("wifi connection")
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand = True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+        self.container = tk.Frame(self)
+        self.container.pack(side="top", fill="both", expand = True)
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
 
         # wifi list from iwlist
         self.t = tra("wlp3s0")#list of wifis
@@ -126,8 +126,6 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
         
         # get password from file
-        
-
         # try all connections
         root.t.try_all()
         
