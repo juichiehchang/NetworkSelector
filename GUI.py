@@ -19,7 +19,7 @@ class Application(tk.Tk):
         self.p = pw()
         
         self.frames = {}
-        frame = StartPage(container, self, wifiList)
+        frame = StartPage(container, self, self.wifiList)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
         for F in (PageOne, PageTwo):
