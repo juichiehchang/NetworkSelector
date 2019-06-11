@@ -117,6 +117,13 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         self.wait = tk.Label(self, text = "Please wait...").pack()
         self.create_widgets()
         button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
+
+        # get password from file
+        root.t.get_passwd()
+
+        # try all connections
+        root.t.try_all()
+        
     def create_widgets(self):
         self.quit = tk.Button(self, text="QUIT", fg="red",
                               command=self.root.destroy)
