@@ -35,12 +35,12 @@ class Application(tk.Tk):
         frame.tkraise() # 切换，提升当前 tk.Frame z轴顺序（使可见）！！此语句是本程序的点睛之处
 
 class StartPage(tk.Frame):
-    def __init__(self, parent, root, wifiDict):
+    def __init__(self, parent, root):
         super().__init__(parent)
         self.root = root
         #aggregate SSIDs
         wifiList = []
-        for wifi in  wifiDict:
+        for wifi in root.t.wifi_list:
             if 'Authentication Suites (1)' in wifi:
                 if wifi['Authentication Suites (1)'] == "psk":
                     wifiList.append("(PSK) "+ wifi["ESSID"])
