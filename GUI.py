@@ -15,8 +15,6 @@ class Application(tk.Tk):
         # wifi list from iwlist
         self.t = tra("wlp3s0")#list of wifis
 
-        # password dicts
-        self.p = pw()
         
         self.frames = {}
         frame = StartPage(container, self)
@@ -38,6 +36,10 @@ class StartPage(tk.Frame):
     def __init__(self, parent, root):
         super().__init__(parent)
         self.root = root
+
+        # password dicts
+        self.p = pw()
+
         #aggregate SSIDs
         wifiList = []
         for wifi in root.t.wifi_list:
@@ -51,7 +53,7 @@ class StartPage(tk.Frame):
         self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
-        button1 = ttk.Button(self, text="Next", command=lambda: [root.p.dump(), root.show_frame(PageOne)]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.show_frame(PageOne)]).grid(row = 3, column = 2)
 
     def create_widgets(self):
         #QUIT botton: exit the window
@@ -101,10 +103,10 @@ class StartPage(tk.Frame):
         password = self.str2.get()
         if identity:
             # eap
-            self.root.p.add_eap(self.ssid.split()[0], identity, password)
+            self.p.add_eap(self.ssid.split()[0], identity, password)
         else:
             # psk
-            self.root.p.add_psk(self.ssid.split()[0], password)
+            self.p.add_psk(self.ssid.split()[0], password)
             
         print(self.ssid)
         self.popup.destroy()
@@ -117,7 +119,7 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         self.wait = tk.Label(self, text = "Please wait...").pack()
         self.create_widgets()
         button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
-
+        
         # get password from file
         root.t.get_passwd()
 
