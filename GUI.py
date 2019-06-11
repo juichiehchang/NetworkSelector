@@ -20,10 +20,10 @@ class Application(tk.Tk):
         frame = StartPage(container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
-        for F in (PageTwo):
-            frame = F(container, self)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
+
+        frame = PageTwo(container, self)
+        self.frames[PageTwo] = frame
+        frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
         
         self.show_frame(StartPage)
         #self.destroy()
