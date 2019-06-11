@@ -43,9 +43,9 @@ class StartPage(tk.Frame):
         for wifi in root.t.wifi_list:
             if 'Authentication Suites (1)' in wifi:
                 if wifi['Authentication Suites (1)'] == "psk":
-                    wifiList.append("(PSK) "+ wifi["ESSID"])
+                    wifiList.append(wifi["ESSID"] + " (PSK)")
                 else:
-                    wifiList.append("(802.1x) "+ wifi["ESSID"])
+                    wifiList.append(wifi["ESSID"] + " (802.1x)")
             else:
                 wifiList.append(wifi["ESSID"])
         self.wifi_listBox(wifiList)##change to real ssid list!!
@@ -101,10 +101,10 @@ class StartPage(tk.Frame):
         password = self.str2.get()
         if identity:
             # eap
-            self.root.p.add_eap(self.ssid, identity, password)
+            self.root.p.add_eap(self.ssid.split()[0], identity, password)
         else:
             # psk
-            self.root.p.add_psk(self.ssid, password)
+            self.root.p.add_psk(self.ssid.split()[0], password)
             
         print(self.ssid)
         self.popup.destroy()
