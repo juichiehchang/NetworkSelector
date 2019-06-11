@@ -76,7 +76,15 @@ class scanner:
             # to see the whole dictionary:
             #print n
 
-        return sorted(networks, key = lambda i: (int(i['Quality'].split('/')[0]), int(i['Signal level'])), reverse=True)
+        temp = []
+        ssid_set = set()
+        
+        for n in networks:
+            if n['ESSID'] not in ssid_set:
+                ssid_set.add(n['ESSID'])
+                temp += [n]
+                
+        return sorted(temp, key = lambda i: (int(i['Quality'].split('/')[0]), int(i['Signal level'])), reverse=True)
 
 def parse_wifi_info(wifi_info):
     for wifi in wifi_info:
