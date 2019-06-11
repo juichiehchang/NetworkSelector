@@ -10,7 +10,7 @@ def get_con_info():
     
     networks = []
     
-    lines = lines[1:-2]
+    lines = [line for line in lines[1:] if line]
     for line in lines:
         networks += [line.split()[0]]
 
