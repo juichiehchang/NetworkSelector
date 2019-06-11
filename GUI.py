@@ -28,10 +28,14 @@ class Application(tk.Tk):
         frame.tkraise() # 切换，提升当前 tk.Frame z轴顺序（使可见）！！此语句是本程序的点睛之处
 
 class StartPage(tk.Frame):
-    def __init__(self, parent, root):
+    def __init__(self, parent, root, wifiDict):
         super().__init__(parent)
         self.root = root
-        self.wifi_listBox(["ok", "vine", "boyadadfadfasdfasdfasdfasd"])##change to real ssid list!!
+        #aggregate SSIDs
+        wifiList = []
+        for i in wifiDict:
+            wifiList.append(i["ESSID"])
+        self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
         button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageOne)).grid(row = 3, column = 2)
