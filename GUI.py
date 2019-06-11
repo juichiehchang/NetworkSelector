@@ -1,17 +1,21 @@
 import tkinter as tk
 from tkinter import ttk
+from traverse_wifi import traverse as tra
 infos = {}
 class Application(tk.Tk):
-    def __init__(self):        
+    def __init__(self, wifiList):        
         super().__init__()
-
+        super().title("wifi connection")
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
-
+        self.wifiList = wifiList#list of wifis
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo):
+        frame = StartPage(container, self, wifiList)
+        self.frames[StartPage] = frame
+        frame.grid(row=0, column=0, sticky ="nsew")
+        for F in (PageOne, PageTwo):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
@@ -111,7 +115,8 @@ class PageTwo(tk.Frame):#display results
 
 #root = tk.Tk()
 if __name__ == '__main__':
-    app = Application()
+    t = tra("wlp3s")
+    app = Application(t)
     app.mainloop()
 
 
