@@ -20,7 +20,7 @@ class Application(tk.Tk):
         frame = StartPage(container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
-        for F in (PageOne, PageTwo):
+        for F in (PageTwo):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
@@ -53,8 +53,13 @@ class StartPage(tk.Frame):
         self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
-        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.t.get_passwd(), root.show_frame(PageOne)]).grid(row = 3, column = 2)
 
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.t.get_passwd(), toPageOne]).grid(row = 3, column = 2)
+    def toPageOne(self):
+        frame = PageOne(self.root.container, self)
+        self.root.frames[PageOne] = frame
+        frame.grid(row=0, column=0, sticky ="nsew")
+        self.root.show_frame(PageOne)
     def create_widgets(self):
         #QUIT botton: exit the window
         self.quit = tk.Button(self, text="QUIT", fg="red", command=self.root.destroy)
