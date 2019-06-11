@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import ttk
 from traverse_wifi import traverse as tra
 from set_pw import pw
-infos = {}
+
 class Application(tk.Tk):
-    def __init__(self, t):        
+    def __init__(self):
         super().__init__()
         super().title("wifi connection")
         container = tk.Frame(self)
@@ -13,13 +13,13 @@ class Application(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         # wifi list from iwlist
-        self.wifiList = t.wifi_list#list of wifis
+        self.t = tra("wlp3s0")#list of wifis
 
         # password dicts
         self.p = pw()
         
         self.frames = {}
-        frame = StartPage(container, self, self.wifiList)
+        frame = StartPage(container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
         for F in (PageOne, PageTwo):
@@ -51,7 +51,7 @@ class StartPage(tk.Frame):
         self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
-        button1 = ttk.Button(self, text="Next", command=lambda: [root.show_frame(PageOne), self.p.dump()]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [root.show_frame(PageOne), root.p.dump()]).grid(row = 3, column = 2)
 
     def create_widgets(self):
         #QUIT botton: exit the window
@@ -101,10 +101,10 @@ class StartPage(tk.Frame):
         password = self.str2.get()
         if identity:
             # eap
-            self.p.add_eap(self.ssid, identity, password)
+            self.root.p.add_eap(self.ssid, identity, password)
         else:
             # psk
-            self.p.add_psk(self.ssid, password)
+            self.root.p.add_psk(self.ssid, password)
             
         print(self.ssid)
         self.popup.destroy()
@@ -140,8 +140,7 @@ class PageTwo(tk.Frame):#display results
 
 #root = tk.Tk()
 if __name__ == '__main__':
-    t = tra("wlp3s0")
-    app = Application(t)
+    app = Application()
     app.mainloop()
 
 
