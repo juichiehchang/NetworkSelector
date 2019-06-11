@@ -25,14 +25,15 @@ class traverse:
         # parse all detected wifi
         parse_wifi_info(self.wifi_list)
         
+        # get already-known connections
+        self.con = get_con_info()
+        
+    def get_passwd(self):
         # get the identities and passwords for wifi connections
         [self.psk_dict, self.eap_dict] = get_pw_dicts()
 
         #print(self.psk_dict)
         #print(self.eap_dict)
-        
-        # get already-known connections
-        self.con = get_con_info()
 
         # add psk config into network-manager
         for name in self.psk_dict:
