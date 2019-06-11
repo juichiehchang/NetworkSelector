@@ -53,7 +53,7 @@ class StartPage(tk.Frame):
         self.wifi_listBox(wifiList)##change to real ssid list!!
         self.create_widgets()
         self.description()
-        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.show_frame(PageOne)]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.t.get_passwd(), root.show_frame(PageOne)]).grid(row = 3, column = 2)
 
     def create_widgets(self):
         #QUIT botton: exit the window
@@ -121,7 +121,7 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
         
         # get password from file
-        root.t.get_passwd()
+        
 
         # try all connections
         root.t.try_all()
