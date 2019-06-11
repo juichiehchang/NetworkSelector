@@ -17,11 +17,11 @@ class Application(tk.Tk):
 
         
         self.frames = {}
-        frame = StartPage(container, self)
+        frame = StartPage(self.container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
 
-        frame = PageTwo(container, self)
+        frame = PageTwo(self.container, self)
         self.frames[PageTwo] = frame
         frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
         
@@ -76,7 +76,7 @@ class StartPage(tk.Frame):
 
     def wifi_listBox(self, wifis):##list all scanned wifis
         self.comment = tk.Label(self, text = 'available wifi').grid(row = 0, column = 0)
-        self.wifiList = tk.Listbox(self, height = 10)
+        self.wifiList = tk.Listbox(self, height = 20)
         for item in wifis:#insert wifi iteratively
             self.wifiList.insert(1, item)
         self.wifiList.grid(row = 1, column = 0, rowspan = 2)
