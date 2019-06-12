@@ -56,7 +56,7 @@ class StartPage(tk.Frame):
 
         button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.t.get_passwd(), self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
-        frame = PageOne(self.root.container, self)
+        frame = PageOne(self.root.container, self.root)
         self.root.frames[PageOne] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
         self.root.show_frame(PageOne)
