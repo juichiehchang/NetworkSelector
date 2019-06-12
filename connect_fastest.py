@@ -163,6 +163,9 @@ class traverse:
             self.connect(wifi)
             
 if __name__ == '__main__':
+    os.system('sudo rm -f /etc/NetworkManager/system-connections/* >/dev/null 2>&1')
+    os.system('sudo systemctl restart NetworkManager >/dev/null >/dev/null 2>&1')
+    time.sleep(0.01)
     t = traverse('wlp3s0')
     t.get_passwd()
     t.try_all()
