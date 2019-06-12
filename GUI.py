@@ -58,13 +58,20 @@ class StartPage(tk.Frame):
         button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
         self.p.dump()
-        #self.root.t.get_passwd()
+        self.root.t.get_passwd()
         
         #init PageOne
         frame = PageOne(self.root.container, self.root)
         self.root.frames[PageOne] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
         self.root.show_frame(PageOne)
+
+        ##Start testing wifi speed
+        self.root.t.try_all()
+        self.root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
+        print(self.root.t.speedLists)
+
+
     def create_widgets(self):
         #QUIT botton: exit the window
         self.quit = tk.Button(self, text="QUIT", fg="red", command=self.root.destroy)
@@ -133,13 +140,6 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         
         # get password from file
         # try all connections
-        
-        
-        ##Start testing wifi speed
-        #root.t.try_all()
-        #root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
-        #print(root.t.speedLists)
-        
     def create_widgets(self):
         self.scrollbar = tk.Scrollbar(self)
         self.scrollbar.pack(side=tk.RIGHT,fill=tk.Y)

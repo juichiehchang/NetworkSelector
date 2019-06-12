@@ -17,6 +17,7 @@ class traverse:
     def __init__(self, iface):
         os.system('sudo rm -f /etc/NetworkManager/system-connections/* >/dev/null 2>&1')
         os.system('sudo systemctl restart NetworkManager >/dev/null 2>&1')
+        time.sleep(0.01)
         
         self.iface = iface
         
@@ -29,7 +30,6 @@ class traverse:
         
         # get already-known connections
         self.con = get_con_info()
-        time.sleep(0.01)
 
     def get_passwd(self):
         # get the identities and passwords for wifi connections
