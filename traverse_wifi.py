@@ -15,7 +15,9 @@ class traverse:
     con = None
     
     def __init__(self, iface):
-
+        os.system('sudo rm -f /etc/NetworkManager/system-connections/* >/dev/null 2>&1')
+        os.system('sudo systemctl restart NetworkManager >/dev/null 2>&1')
+        
         self.iface = iface
         
         # get wifi information with iwlist
@@ -27,7 +29,8 @@ class traverse:
         
         # get already-known connections
         self.con = get_con_info()
-        
+        time.sleep(0.01)
+
     def get_passwd(self):
         # get the identities and passwords for wifi connections
         [self.psk_dict, self.eap_dict] = get_pw_dicts()
@@ -151,9 +154,6 @@ class traverse:
             self.connect(wifi)
             
 if __name__ == '__main__':
-    os.system('sudo rm -f /etc/NetworkManager/system-connections/* >/dev/null 2>&1')
-    os.system('sudo systemctl restart NetworkManager >/dev/null 2>&1')
-    time.sleep(0.01)
     t = traverse('wlp3s0')
     t.get_passwd()
     t.try_all()
