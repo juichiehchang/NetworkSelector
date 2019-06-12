@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from traverse_wifi import traverse as tra
+
 from set_pw import pw
 import time
 import connect_fastest as fastest
@@ -15,7 +15,7 @@ class Application(tk.Tk):
         self.container.grid_columnconfigure(0, weight=1)
 
         # wifi list from iwlist
-        self.t = tra("wlp3s0")#list of wifis
+        self.t = fastest("wlp3s0")#list of wifis
 
         
         self.frames = {}
