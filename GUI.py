@@ -1,9 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-
 from set_pw import pw
 import time
-import connect_fastest as fastest
+from connect_fastest import traverse as fastest
 import os
 class Application(tk.Tk):
     def __init__(self):
