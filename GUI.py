@@ -2,7 +2,9 @@ import tkinter as tk
 from tkinter import ttk
 from traverse_wifi import traverse as tra
 from set_pw import pw
-
+import time
+import connect_fastest as fastest
+import os
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -54,8 +56,15 @@ class StartPage(tk.Frame):
         self.create_widgets()
         self.description()
 
-        button1 = ttk.Button(self, text="Next", command=lambda: [self.p.dump(), root.t.get_passwd(), self.toPageOne()]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
+        os.system("sudo rm -f /etc/NetworkManager/system-connections/* > /dev/null 2>&1")
+        os.system("sudo systemctl restart NetworkManager >/dev/nul >/dev/null 2>&1")
+        time.sleep(.01)
+        self.p.dump()
+        self.root.t.get_passwd()
+        
+        #init PageOne
         frame = PageOne(self.root.container, self.root)
         self.root.frames[PageOne] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
@@ -123,13 +132,25 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         self.root = root
         self.wait = tk.Label(self, text = "Please wait...").pack()
         self.create_widgets()
-        button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
+        
+        #button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
         
         # get password from file
         # try all connections
+        
+        
+        ##Start testing wifi speed
         root.t.try_all()
+        root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
         
     def create_widgets(self):
+        self.scrollbar = tk.Scrollbar(self)
+        self.scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
+
+        self.text = tk.Text(self,yscrollcommand=self.scrollbar.set)
+        self.text.pack(side=tk.LEFT,fill=tk.BOTH)
+
+self.scrollbar.config(command=self.text.yview)
         self.quit = tk.Button(self, text="QUIT", fg="red",
                               command=self.root.destroy)
         self.quit.pack(side="bottom")
