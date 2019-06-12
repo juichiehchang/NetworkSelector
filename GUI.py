@@ -58,9 +58,6 @@ class StartPage(tk.Frame):
 
         button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
-        os.system("sudo rm -f /etc/NetworkManager/system-connections/* > /dev/null 2>&1")
-        os.system("sudo systemctl restart NetworkManager >/dev/nul >/dev/null 2>&1")
-        time.sleep(.01)
         self.p.dump()
         self.root.t.get_passwd()
         
