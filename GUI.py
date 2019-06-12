@@ -142,6 +142,7 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         ##Start testing wifi speed
         root.t.try_all()
         root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
+        print(root.t.speedLists)
         
     def create_widgets(self):
         self.scrollbar = tk.Scrollbar(self)
@@ -150,9 +151,9 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         self.text = tk.Text(self,yscrollcommand=self.scrollbar.set)
         self.text.pack(side=tk.LEFT,fill=tk.BOTH)
 
-self.scrollbar.config(command=self.text.yview)
-        self.quit = tk.Button(self, text="QUIT", fg="red",
-                              command=self.root.destroy)
+        self.scrollbar.config(command=self.text.yview)
+        
+        self.quit = tk.Button(self, text="QUIT", fg="red", command=self.root.destroy)
         self.quit.pack(side="bottom")
 
 class PageTwo(tk.Frame):#display results
