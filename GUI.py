@@ -58,7 +58,7 @@ class StartPage(tk.Frame):
         button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
         self.p.dump()
-        self.root.t.get_passwd()
+        #self.root.t.get_passwd()
         
         #init PageOne
         frame = PageOne(self.root.container, self.root)
@@ -136,9 +136,9 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         
         
         ##Start testing wifi speed
-        root.t.try_all()
-        root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
-        print(root.t.speedLists)
+        #root.t.try_all()
+        #root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
+        #print(root.t.speedLists)
         
     def create_widgets(self):
         self.scrollbar = tk.Scrollbar(self)
