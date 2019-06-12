@@ -28,6 +28,8 @@ class traverse:
         
         # get already-known connections
         self.con = get_con_info()
+
+        self.speedLists = []
         
     def get_passwd(self):
         # get the identities and passwords for wifi connections
@@ -96,17 +98,16 @@ class traverse:
             for line in lines:
                 f.write(line)
 
-    def printSpeed(self, name):
-        print(name)
+    def testSpeed(self, name):
+        print('Testing ' + name)
         servers = []
         s = speedtest.Speedtest()
         s.get_servers(servers)
         s.get_best_server()
         s.download()
-        s.upload()
         s.results.share()
         res = s.results.dict()
-        print('ping:', res['ping'], 'down:', res['download'], 'uplo:', res['upload'])
+        self.speedLists.append((name, res['download']))
 
     def connect(self, wifi):
 
@@ -127,7 +128,7 @@ class traverse:
                         pass#print("Couldn't connect to name : {}. {}".format(name, e))
                     else:
                         if result:
-                            self.printSpeed(name)
+                            self.testSpeed(name)
                 """else:
                     print('Does not have the identity and password for "{}"'.format(name))"""
             elif authentication == 'PSK':
@@ -142,7 +143,7 @@ class traverse:
                         pass#print("Couldn't connect to name : {}. {}".format(name, e))
                     else:
                         if result:
-                            self.printSpeed(name)
+                            self.testSpeed(name)
                 """else:
                     print('Does not have the password for "{}"'.format(name))"""
                     
@@ -169,3 +170,5 @@ if __name__ == '__main__':
     t = traverse('wlp3s0')
     t.get_passwd()
     t.try_all()
+    t.speedLists.sort(key=lambda sp: sp[1], reverse=True)
+    print(t.speedLists)
