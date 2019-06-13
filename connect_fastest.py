@@ -142,6 +142,7 @@ class traverse:
                     try:
                         result = self.connection(name)
                     except Exception as e:
+                        print("GG")
                         pass#print("Couldn't connect to name : {}. {}".format(name, e))
                     else:
                         if result:
