@@ -61,8 +61,11 @@ class StartPage(tk.Frame):
         self.create_widgets()
         self.description()
 
-        button1 = ttk.Button(self, text="Next", command=lambda: [self.root.show_frame(PageOne) ,self.toPageOne()]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
+    
     def toPageOne(self):
+        self.root.show_frame(PageOne)
+        time.sleep(.03)
         self.p.dump()
         self.root.t.get_passwd()
         
