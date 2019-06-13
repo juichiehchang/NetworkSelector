@@ -154,6 +154,8 @@ class traverse:
                     print('Does not have the password for "{}"'.format(name))
             else:
                 print(authentication)
+        else:
+            print("IT's" + wifi['Authentication Suites (1)'])
     def connection(self, name):
         try:
             os.system("nmcli con up {} >/dev/null 2>&1".format(name))
