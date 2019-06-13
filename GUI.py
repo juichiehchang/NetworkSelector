@@ -18,7 +18,7 @@ class Application(tk.Tk):
 
         
         self.frames = {}
-        """
+        
         frame = StartPage(self.container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
@@ -31,7 +31,7 @@ class Application(tk.Tk):
         frame = PageTwo(self.container, self)
         self.frames[PageTwo] = frame
         frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
-        """
+        
         self.show_frame(StartPage)
         #self.destroy()
         
@@ -81,6 +81,10 @@ class StartPage(tk.Frame):
         self.root.t.try_all()
         self.root.t.speedLists.sort(key = lambda sp: sp[1], reverse=True)
         print(self.root.t.speedLists)
+
+        frame = PageOne(self.root.container, self.root)                                                                          
+        self.root.frames[PageOne] = frame                                                                                                                    
+        frame.grid(row=0, column=0, sticky ="nsew")
         self.root.show_frame(PageOne)
 
     def create_widgets(self):
