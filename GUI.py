@@ -160,7 +160,7 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
 
         self.text = tk.Text(self)
         for wifi in self.root.t.speedLists:
-            self.text.insert("end", "ssid: {} Download speed: {}Mb\n".format(wifi[0], wifi[1]))
+            self.text.insert("end", "ssid: {} Download speed: {}Mb\n".format(wifi[0], wifi[1] / 1000000))
         self.text.pack(side=tk.TOP,fill=tk.BOTH)
 
         #self.scrollbar.config(command=self.text.yview)
