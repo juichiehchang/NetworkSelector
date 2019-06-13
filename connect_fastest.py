@@ -120,9 +120,7 @@ class traverse:
         # check authentication suites
         if 'Authentication Suites (1)' in wifi:
             authentication = wifi['Authentication Suites (1)']
-            print("this is " + authentication)
             if authentication == 'EAP' or authentication == '802.1x':
-                print("OK")
                 # eap requires identity and password
                 if name in self.eap_dict:
                     [identity, password] = self.eap_dict[name]
@@ -138,16 +136,13 @@ class traverse:
                     print('Does not have the identity and password for "{}"'.format(name))"""
             elif authentication == 'PSK':
                 # psk requires only password
-                print("PSKS")
                 if name in self.psk_dict:
-                    print('in PSK section')
                     password = self.psk_dict[name]
                     #print('Connecting to "{}" with password "{}"'.format(name, password))
                     # try to connect
                     try:
                         result = self.connection(name)
                     except Exception as e:
-                        print("GG")
                         pass#print("Couldn't connect to name : {}. {}".format(name, e))
                     else:
                         if result:
@@ -156,8 +151,6 @@ class traverse:
                     print('Does not have the password for "{}"'.format(name))
             else:
                 print(authentication)
-        else:
-            print("IT's" + wifi['Authentication Suites (1)'])
     def connection(self, name):
         try:
             os.system("nmcli con up {} >/dev/null 2>&1".format(name))
