@@ -115,7 +115,7 @@ class traverse:
 
         name = wifi['ESSID']
         #print('name: {}'.format(name))
-        
+        print("try {}".format(name))
         # check authentication suites
         if 'Authentication Suites (1)' in wifi:
             authentication = wifi['Authentication Suites (1)']
