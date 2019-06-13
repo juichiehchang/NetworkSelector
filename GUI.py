@@ -155,15 +155,15 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
         # get password from file
         # try all connections
     def create_widgets(self):
-        self.scrollbar = tk.Scrollbar(self)
-        self.scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
+        #self.scrollbar = tk.Scrollbar(self)
+        #self.scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
 
-        self.text = tk.Text(self,yscrollcommand=self.scrollbar.set)
+        self.text = tk.Text(self)
         for wifi in self.root.t.speedLists:
-            self.text.insert("end", "ssid: {} Download speed: {}Mb".format(wifi[0], wifi[1]))
-        self.text.pack(side=tk.LEFT,fill=tk.BOTH)
+            self.text.insert("end", "ssid: {} Download speed: {}Mb\n".format(wifi[0], wifi[1]))
+        self.text.pack(side=tk.TOP,fill=tk.BOTH)
 
-        self.scrollbar.config(command=self.text.yview)
+        #self.scrollbar.config(command=self.text.yview)
         
         self.quit = tk.Button(self, text="QUIT", fg="red", command=self.root.destroy)
         self.quit.pack(side="bottom")
