@@ -136,6 +136,7 @@ class traverse:
                     print('Does not have the identity and password for "{}"'.format(name))"""
             elif authentication == 'PSK':
                 # psk requires only password
+                print("PSKS")
                 if name in self.psk_dict:
                     print('in PSK section')
                     password = self.psk_dict[name]
