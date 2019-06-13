@@ -18,14 +18,20 @@ class Application(tk.Tk):
 
         
         self.frames = {}
+        """
         frame = StartPage(self.container, self)
         self.frames[StartPage] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
-
+        """
+        for F in (StartPage, PageOne, PageTwo):
+            frame = F(self.container, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky = "nsew")
+        """
         frame = PageTwo(self.container, self)
         self.frames[PageTwo] = frame
         frame.grid(row=0, column=0, sticky="nsew")  # 四个页面的位置都是 grid(row=0, column=0), 位置重叠，只有最上面的可见！！
-        
+        """
         self.show_frame(StartPage)
         #self.destroy()
         
@@ -55,16 +61,18 @@ class StartPage(tk.Frame):
         self.create_widgets()
         self.description()
 
-        button1 = ttk.Button(self, text="Next", command=lambda: [self.toPageOne()]).grid(row = 3, column = 2)
+        button1 = ttk.Button(self, text="Next", command=lambda: [self.root.show_frame(PageOne) ,self.toPageOne()]).grid(row = 3, column = 2)
     def toPageOne(self):
         self.p.dump()
         self.root.t.get_passwd()
         
         #init PageOne
+        """
         frame = PageOne(self.root.container, self.root)
         self.root.frames[PageOne] = frame
         frame.grid(row=0, column=0, sticky ="nsew")
-        self.root.show_frame(PageOne)
+        """
+        
 
         ##Start testing wifi speed
         self.root.t.try_all()
