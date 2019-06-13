@@ -7,7 +7,7 @@ def get_pw_dicts():
         data = json.load(jsonfile)
         for psk in data['psk']:
             psk_dict[psk['ssid']] = psk['password']
-
+            print(psk['ssid'], psk['password'])
         for eap in data['eap']:
             eap_dict[eap['ssid']] = [eap['identity'], eap['password']]
 
