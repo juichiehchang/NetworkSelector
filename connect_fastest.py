@@ -136,6 +136,7 @@ class traverse:
             elif authentication == 'PSK':
                 # psk requires only password
                 if name in self.psk_dict:
+                    print('in PSK section')
                     password = self.psk_dict[name]
                     #print('Connecting to "{}" with password "{}"'.format(name, password))
                     # try to connect
