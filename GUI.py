@@ -51,7 +51,7 @@ class StartPage(tk.Frame):
         wifiList = []
         for wifi in root.t.wifi_list:
             if 'Authentication Suites (1)' in wifi:
-                if wifi['Authentication Suites (1)'] == "psk":
+                if wifi['Authentication Suites (1)'] == "PSK":
                     wifiList.append(wifi["ESSID"] + " (PSK)")
                 else:
                     wifiList.append(wifi["ESSID"] + " (802.1x)")
@@ -148,7 +148,6 @@ class PageOne(tk.Frame):#Switch from PageOne to PageTwo by calling <Application.
     def __init__(self, parent, root):
         super().__init__(parent)
         self.root = root
-        self.wait = tk.Label(self, text = "Please wait...").pack()
         self.create_widgets()
         
         #button1 = ttk.Button(self, text="Next", command=lambda: root.show_frame(PageTwo)).pack()
