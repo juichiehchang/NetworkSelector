@@ -121,7 +121,7 @@ class traverse:
         if 'Authentication Suites (1)' in wifi:
             authentication = wifi['Authentication Suites (1)']
             print("this is " + authentication)
-            if authentication == 'EAP' or '802.1x':
+            if authentication == 'EAP' or authentication == '802.1x':
                 print("OK")
                 # eap requires identity and password
                 if name in self.eap_dict:
