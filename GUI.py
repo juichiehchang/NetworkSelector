@@ -125,8 +125,8 @@ class StartPage(tk.Frame):
             self.user = tk.Label(self.popup, text = "username:").grid(row = 0, column = 0)
             self.user_entry = tk.Entry(self.popup, textvariable = self.str1, borderwidth = 2, relief = "groove").grid(row = 0, column = 1)
 
-            self.pwd  = tk.Label(self.popup,show = "*", text = "password:").grid(row = 1, column = 0)
-            self.pwd_entry = tk.Entry(self.popup, textvariable = self.str2, borderwidth = 2, relief = "groove").grid(row = 1, column = 1)
+            self.pwd  = tk.Label(self.popup, text = "password:").grid(row = 1, column = 0)
+            self.pwd_entry = tk.Entry(self.popup,show = "*", textvariable = self.str2, borderwidth = 2, relief = "groove").grid(row = 1, column = 1)
             #ok button
             self.ok = tk.Button(self.popup, text = "OK", command = self.saveInfo).grid(row = 2, column = 1)
 
