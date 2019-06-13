@@ -133,7 +133,7 @@ class traverse:
                             self.testSpeed(name)
                 """else:
                     print('Does not have the identity and password for "{}"'.format(name))"""
-            elif authentication == 'PSK':
+            elif authentication == '(PSK)':
                 # psk requires only password
                 if name in self.psk_dict:
                     print('in PSK section')
